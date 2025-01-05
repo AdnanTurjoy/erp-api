@@ -17,6 +17,7 @@ public class UserMgtController {
 
     @PostMapping("/user")
     public ApiResponse<UserMgt> addUsers(@RequestBody UserMgt user){
+        System.out.println(user.getUsername());
         UserMgt newUser = userService.addUser(user);
         return new ApiResponse<>(true, "User created successfully", newUser);
     }
@@ -34,7 +35,7 @@ public class UserMgtController {
     }
 
     @PutMapping("/user/{id}")
-    public ApiResponse<UserMgt> updateUser(@PathVariable("id") long id, @RequestBody UserMgt user) throws ChangeSetPersister.NotFoundException {
+    public ApiResponse<UserMgt> updateUser(@PathVariable("id") long id, @RequestBody UserMgt user) {
         UserMgt updateduser = userService.updateUserById(id, user);
         return new ApiResponse<>(true, "User updated successfully", updateduser);
     }
